@@ -207,7 +207,7 @@ const P=[
   note:'사업자등록 전인 예비창업자 대상.'},
  {name:'(예비)사회적기업 일자리창출 지원',org:'고용노동부 · 시·도',kind:'annual',hideIfRegion:true,
   types:['se','pse'],needs:['hire'],kw:'사회적기업 일자리창출 지원사업',url:'https://www.socialenterprise.or.kr',
-  hist:{'2024':'경기 1차 2월·2차 5월, 제주 3차 7월','2025':'경기 1차 1.15 공고(~2.4)','2026':'서울 2.4, 부산 2.11, 인천·경기 2.20, 강원 4.20 공고, 전북 2차 4월·3차 9월'},exp:[2,3,4],expText:'2~4월 시·도별 공고, 하반기 추가 모집 예상',
+  hist:{'2024':'경기 1차 2.26·2차 5.13 공고, 제주 3차 접수 7.10~7.19','2025':'경기 1차 접수 1.16~2.4, 전북 2차 접수 4.1~4.15','2026':'서울 접수 2.4~2.23, 인천 2.20~3.6, 부산 2.23~3.10, 경기 2.20 공고, 강원 추가모집 4.20~5.5'},exp:[2,3,4],expText:'2~4월 시·도별 공고, 하반기 추가 모집 예상',
   note:'시·도마다 공고 시기와 조건이 다릅니다. 소재지를 고르면 그 시·도의 공고 흐름을 보여 드립니다.'},
  {name:'(예비)사회적기업 사업개발비 지원',org:'시·도 · 시·군·구',kind:'annual',
   types:['se','pse'],needs:['market','startup'],kw:'사회적기업 사업개발비 지원',url:'https://www.socialenterprise.or.kr',
@@ -249,19 +249,20 @@ const P=[
  {name:'소상공인 정책자금 융자(2026년분)',org:'소상공인시장진흥공단',kind:'open',end:'2026-12-31',
   types:['sole','se','pse','coop'],needs:['fund'],kw:'소상공인 정책자금',url:'https://www.sbiz24.kr'}
 ];
-/* 시·도별 (예비)사회적기업 일자리창출 공고. 시·도청·기업마당 원문에서 확인한 것만 적고, 없는 해는 '확인 못 함'으로 표시 (2026.11.23 조사) */
+/* 시·도별 (예비)사회적기업 일자리창출 공고. 공고 원문 페이지를 직접 열어 확인한 것만 적고, 없는 해는 '확인 못 함'으로 표시 (2026.11.23 확인, 출처는 각 url) */
 const SE_JOBS={
- '서울':{h:{'2026':'1차 2.4 공고(서울시 공고 제2026-410호)'},exp:[2],url:'https://news.seoul.go.kr/economy/social_economy'},
- '부산':{h:{'2026':'1차 2.11 공고(접수 2.23~3.10), 2차 3.12 공고'},exp:[2,3],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000118602'},
- '인천':{h:{'2026':'2.20 공고(접수 2.20~3.6, 인천시 공고 제2026-455호)'},exp:[2,3],url:'https://www.incheon.go.kr/IC010307/view?gosigbn=A&sno=68232'},
- '경기':{h:{'2024':'1차 2.26, 2차 5.13 공고','2025':'1차 1.15 공고(~2.4)','2026':'2.20 공고(경기도 고시 2026-452)'},exp:[1,2],url:'https://www.gg.go.kr/bbs/boardView.do?bIdx=222750759&bsIdx=469&menuId=1547'},
- '강원':{h:{'2026':'4.20 공고(접수 4.20~5.5, 강원특별자치도 공고 제2026-698호)'},exp:[4],url:'https://state.gwd.go.kr/portal/partinfo/investmentEconomy/socialEconomic'},
- '전북':{h:{'2025':'2차 접수 4.1~4.15','2026':'2차 4월 공고(전북특별자치도 공고 제2026-852호), 3차 접수 9.23~10.7'},exp:[4,9],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000107224'},
+ // 서울: 서울특별시 공고 제2026-410호 원문, 2·3차는 서울시 통합검색의 선정결과 공고(5.7, 8.11)
+ '서울':{h:{'2026':'1차 2.4 공고(서울시 공고 제2026-410호), 접수 2.4~2.23. 이후 2·3차 모집(선정결과 5.7·8.11 공고)'},exp:[2],url:'https://news.seoul.go.kr/economy/social_economy'},
+ '부산':{h:{'2026':'접수 2.23~3.10'},exp:[2,3],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000118602'},
+ '인천':{h:{'2026':'접수 2.20~3.6'},exp:[2,3],url:'https://www.yeonsu.go.kr/main/yeonsu/management/notice.asp?page=v&seq=38'},
+ '경기':{h:{'2024':'1차 2.26, 2차 5.13 공고','2025':'1차 접수 1.16~2.4','2026':'2.20 공고(경기도 고시 2026-452)'},exp:[1,2],url:'https://www.gg.go.kr/bbs/boardView.do?bIdx=222750759&bsIdx=469&menuId=1547'},
+ '강원':{h:{'2026':'4.20 변경·추가모집 공고(추가모집 4.20~5.5)'},exp:[4],n:'2026년 처음 모집 공고일은 확인하지 못했습니다.',url:'https://state.gwd.go.kr/portal/bulletin/notification?articleSeq=269388'},
+ '전북':{h:{'2025':'2차 접수 4.1~4.15'},exp:[4],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000107224'},
  '제주':{h:{'2024':'3차 접수 7.10~7.19'},exp:[7],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000099235'},
  // 아래는 2024~2026 공고를 못 찾은 곳. 그 전 공고나 시·도 안내 페이지에서 확인한 주기만 메모로 남김
- '대구':{h:{},exp:[],n:'2022년에는 연 4회(1·4·7·10월) 공모했습니다(기업마당 2022년 4차 공고).'},
+ '대구':{h:{},exp:[],n:'2022년에는 4차 모집(10.4~10.21)까지 있었습니다(기업마당).'},
  '대전':{h:{},exp:[],n:'2024년 2월에는 대전사회적경제연구원이 「두드림 일자리사업」으로 사회적경제기업 신규 고용 인건비를 지원했습니다(별도 사업).'},
- '세종':{h:{},exp:[],n:'세종시 안내 페이지 기준 일자리창출사업은 연 2회 공모합니다.',url:'https://www.sejong.go.kr/kor/sub04_1002.do'},
+ '세종':{h:{},exp:[],n:'세종시 안내 페이지 기준 사회적기업 지원사업은 연 2회 공개 모집합니다.',url:'https://www.sejong.go.kr/kor/sub04_1002.do'},
  '충북':{h:{},exp:[],n:'2023년에는 하반기 모집이 9월(9.13~9.20)에 있었습니다.'},
  '경남':{h:{},exp:[],n:'2023년에는 2차 모집이 7월(7.3~7.17)에 있었습니다.'}
 };
