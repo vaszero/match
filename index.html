@@ -206,7 +206,7 @@ const P=[
   note:'사업자등록 전인 예비창업자 대상.'},
  {name:'(예비)사회적기업 일자리창출 지원',org:'고용노동부 · 시·도',kind:'annual',
   types:['se','pse'],needs:['hire'],kw:'사회적기업 일자리창출 지원사업',url:'https://www.socialenterprise.or.kr',
-  hist:{'2024':'','2025':'시·도별 차수 공고','2026':'시·도별 1~3차: 3월(부산·대전·울산·충남) ~ 5월(경기·광주), 서울 3차 6월, 하반기 추가(강원 8월, 전북 9월)'},exp:[2,3,4,5],expText:'3~5월 시·도별 공고, 하반기 추가 모집 예상',
+  hist:{'2024':'','2025':'시·도별 차수 공고','2026':'시·도별 1~3차: 3월(부산·대전·울산·충남) ~ 5월(경기·광주), 서울 3차 6월, 하반기 추가(강원 8월, 전북 9월)'},exp:[3,4,5],expText:'3~5월 시·도별 공고, 하반기 추가 모집 예상',
   note:'한국사회적기업진흥원이 3월 초 「지자체별 일자리창출사업 모아보기」를 올립니다. 2026년 경기는 사회적가치지표(SVI) 등급에 따라 월 50만~90만 원 기본 지원에 도비 30% 추가. 시·도마다 조건이 달라 소재지 공고 확인 필요.'},
  {name:'(예비)사회적기업 사업개발비 지원',org:'시·도 · 시·군·구',kind:'annual',
   types:['se','pse'],needs:['market','startup'],kw:'사회적기업 사업개발비 지원',url:'https://www.socialenterprise.or.kr',
@@ -297,7 +297,7 @@ function card(m){
   el.innerHTML='<h3></h3><div class="org"></div><div class="dday">'+pill+'</div>'+(p.hist?'<div class="hist"></div>':'')+'<p class="why">맞는 이유: <em></em></p>'+(p.note?'<p class="note"></p>':'')+
    '<div class="links"><a target="_blank" rel="noopener"></a><span class="kw">검색어 <code></code></span></div>';
   el.querySelector('h3').textContent=p.name; el.querySelector('.org').textContent=p.org;
-  if(p.kind!=='open'){const g=el.querySelector('.ddate');g.textContent=guide(p);g.style.cssText='font-size:15px;font-weight:700;color:var(--ink,#26235f)'}
+  if(p.kind!=='open'){const g=document.createElement('p');g.textContent=guide(p);g.style.cssText='grid-column:1/-1;margin:0;font-size:15px;font-weight:700;color:#26235f';el.querySelector('.dday').after(g)}
   if(p.hist){const h=el.querySelector('.hist');['2024','2025','2026'].forEach(y=>{const d=document.createElement('div');const t=p.hist[y];d.innerHTML='<b>'+y+'</b>';const sp=document.createElement('span');sp.textContent=t||'공식 자료 확인 못 함';if(!t)sp.className='na';d.append(sp);h.append(d)});
     const d=document.createElement('div');d.className='y27';d.innerHTML='<b>2027 예상</b>';d.append(document.createTextNode(p.expText||''));h.append(d)}
   el.querySelector('em').textContent=m.why.join(' / ')||'기본 조건 해당';
