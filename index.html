@@ -65,6 +65,7 @@ h2 small{font-family:var(--f-body);font-size:14px;color:var(--muted);font-weight
 .p-open{background:var(--ok-soft);color:var(--ok)}
 .p-annual{background:var(--dim-soft);color:var(--muted)}
 .ddate{display:block;font-size:13px;color:var(--muted);margin-top:4px}
+.guide{grid-column:1/-1;margin:0;font-size:15px;font-weight:700;color:var(--navy)}
 .why{grid-column:1/-1;font-size:14.5px;margin:4px 0 0}
 .why em{font-style:normal;color:var(--ok);font-weight:700}
 .note{grid-column:1/-1;font-size:14px;color:var(--warn);margin:0}
@@ -77,7 +78,7 @@ h2 small{font-family:var(--f-body);font-size:14px;color:var(--muted);font-weight
 .cta p{margin:0;max-width:60ch}
 .cta .tel{font-family:var(--f-head);font-size:22px;font-weight:700;user-select:all;font-variant-numeric:tabular-nums}
 .cal-wrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px}
-.cal{display:grid;grid-template-columns:minmax(210px,2.2fr) repeat(7,minmax(44px,1fr));gap:4px 3px;min-width:600px;font-size:14px}
+.cal{display:grid;grid-template-columns:minmax(190px,2.2fr) repeat(13,minmax(30px,1fr));gap:4px 3px;min-width:640px;font-size:14px}
 .cal .mh{font-size:13px;color:var(--muted);text-align:center;font-variant-numeric:tabular-nums}
 .cal .mh.now{color:var(--accent);font-weight:700}
 .cal .nm{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-right:6px}
@@ -204,10 +205,10 @@ const P=[
   types:['pre'],needs:['startup','fund'],kw:'예비창업패키지',url:'https://www.k-startup.go.kr',
   hist:{'2024':'1월 29일 공고(통합, ~2.23)','2025':'2월 18일 공고(2.24~3.12)','2026':'2월 27일 공고(3.6~3.24)'},exp:[2,3],expText:'2~3월 공고 예상',
   note:'사업자등록 전인 예비창업자 대상.'},
- {name:'(예비)사회적기업 일자리창출 지원',org:'고용노동부 · 시·도',kind:'annual',
+ {name:'(예비)사회적기업 일자리창출 지원',org:'고용노동부 · 시·도',kind:'annual',hideIfRegion:true,
   types:['se','pse'],needs:['hire'],kw:'사회적기업 일자리창출 지원사업',url:'https://www.socialenterprise.or.kr',
-  hist:{'2024':'','2025':'시·도별 차수 공고','2026':'시·도별 1~3차: 3월(부산·대전·울산·충남) ~ 5월(경기·광주), 서울 3차 6월, 하반기 추가(강원 8월, 전북 9월)'},exp:[3,4,5],expText:'3~5월 시·도별 공고, 하반기 추가 모집 예상',
-  note:'한국사회적기업진흥원이 3월 초 「지자체별 일자리창출사업 모아보기」를 올립니다. 2026년 경기는 사회적가치지표(SVI) 등급에 따라 월 50만~90만 원 기본 지원에 도비 30% 추가. 시·도마다 조건이 달라 소재지 공고 확인 필요.'},
+  hist:{'2024':'경기 1차 2월·2차 5월, 제주 3차 7월','2025':'경기 1차 1.15 공고(~2.4)','2026':'서울 2.4, 부산 2.11, 인천·경기 2.20, 강원 4.20 공고, 전북 2차 4월·3차 9월'},exp:[2,3,4],expText:'2~4월 시·도별 공고, 하반기 추가 모집 예상',
+  note:'시·도마다 공고 시기와 조건이 다릅니다. 소재지를 고르면 그 시·도의 공고 흐름을 보여 드립니다.'},
  {name:'(예비)사회적기업 사업개발비 지원',org:'시·도 · 시·군·구',kind:'annual',
   types:['se','pse'],needs:['market','startup'],kw:'사회적기업 사업개발비 지원',url:'https://www.socialenterprise.or.kr',
   hist:{'2024':'','2025':'충남 3월(~3.28) 등 시·도별','2026':'자치구별 공고, 국가유산형 2.10~3.2(국가유산청)'},exp:[2,3],expText:'2~3월, 시·군·구별 공고 예상',
@@ -248,6 +249,26 @@ const P=[
  {name:'소상공인 정책자금 융자(2026년분)',org:'소상공인시장진흥공단',kind:'open',end:'2026-12-31',
   types:['sole','se','pse','coop'],needs:['fund'],kw:'소상공인 정책자금',url:'https://www.sbiz24.kr'}
 ];
+/* 시·도별 (예비)사회적기업 일자리창출 공고. 시·도청·기업마당 원문에서 확인한 것만 적고, 없는 해는 '확인 못 함'으로 표시 (2026.11.23 조사) */
+const SE_JOBS={
+ '서울':{h:{'2026':'1차 2.4 공고(서울시 공고 제2026-410호)'},exp:[2],url:'https://news.seoul.go.kr/economy/social_economy'},
+ '부산':{h:{'2026':'1차 2.11 공고(접수 2.23~3.10), 2차 3.12 공고'},exp:[2,3],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000118602'},
+ '인천':{h:{'2026':'2.20 공고(접수 2.20~3.6, 인천시 공고 제2026-455호)'},exp:[2,3],url:'https://www.incheon.go.kr/IC010307/view?gosigbn=A&sno=68232'},
+ '경기':{h:{'2024':'1차 2.26, 2차 5.13 공고','2025':'1차 1.15 공고(~2.4)','2026':'2.20 공고(경기도 고시 2026-452)'},exp:[1,2],url:'https://www.gg.go.kr/bbs/boardView.do?bIdx=222750759&bsIdx=469&menuId=1547'},
+ '강원':{h:{'2026':'4.20 공고(접수 4.20~5.5, 강원특별자치도 공고 제2026-698호)'},exp:[4],url:'https://state.gwd.go.kr/portal/partinfo/investmentEconomy/socialEconomic'},
+ '전북':{h:{'2025':'2차 접수 4.1~4.15','2026':'2차 4월 공고(전북특별자치도 공고 제2026-852호), 3차 접수 9.23~10.7'},exp:[4,9],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000107224'},
+ '제주':{h:{'2024':'3차 접수 7.10~7.19'},exp:[7],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000099235'},
+ // 아래는 2024~2026 공고를 못 찾은 곳. 그 전 공고나 시·도 안내 페이지에서 확인한 주기만 메모로 남김
+ '대구':{h:{},exp:[],n:'2022년에는 연 4회(1·4·7·10월) 공모했습니다(기업마당 2022년 4차 공고).'},
+ '대전':{h:{},exp:[],n:'2024년 2월에는 대전사회적경제연구원이 「두드림 일자리사업」으로 사회적경제기업 신규 고용 인건비를 지원했습니다(별도 사업).'},
+ '세종':{h:{},exp:[],n:'세종시 안내 페이지 기준 일자리창출사업은 연 2회 공모합니다.',url:'https://www.sejong.go.kr/kor/sub04_1002.do'},
+ '충북':{h:{},exp:[],n:'2023년에는 하반기 모집이 9월(9.13~9.20)에 있었습니다.'},
+ '경남':{h:{},exp:[],n:'2023년에는 2차 모집이 7월(7.3~7.17)에 있었습니다.'}
+};
+SIDO.forEach(r=>{const d=SE_JOBS[r]||{h:{},exp:[]};P.push({name:r+' (예비)사회적기업 일자리창출 지원',org:r+' 시·도청',kind:'annual',regions:[r],
+  types:['se','pse'],needs:['hire'],kw:r+' 사회적기업 일자리창출',url:d.url||'https://www.bizinfo.go.kr',hist:d.h,exp:d.exp,
+  expText:d.exp.length?(d.exp.length>1?d.exp[0]+'~'+d.exp[d.exp.length-1]:d.exp[0])+'월 공고 예상':'공식 공고를 확인하지 못했습니다. 다른 시·도는 2~4월에 공고했습니다.',
+  note:(d.n?d.n+' ':'')+'취약계층을 새로 고용하면 인건비 일부를 지원합니다. 조건과 금액은 '+r+' 공고문에서 확인해 주세요.'})});
 
 const $=s=>document.querySelector(s);
 function build(){
@@ -275,6 +296,7 @@ function match(v){
   for(const p of P){
     const why=[];
     if(v.type.length){const t=v.type.filter(x=>p.types.includes(x)); if(!t.length) continue; why.push(t.map(x=>label('type',x)).join('·')+' 대상')}
+    if(p.hideIfRegion && v.region) continue;
     if(p.regions){ if(!v.region || !p.regions.includes(v.region)) continue; why.push(v.region+' 소재') }
     if(p.ages && v.age.length && !v.age.some(a=>p.ages.includes(a))) continue;
     if(p.staff && v.staff.length && !v.staff.some(s=>p.staff.includes(s))) continue;
@@ -288,7 +310,7 @@ function match(v){
   return out;
 }
 // 지난 3년 공고 달(exp)로 '언제 신청해 보라'는 한 줄 안내
-function guide(p){if(!p.exp||!p.exp.length)return p.expText||'';const e=[...new Set(p.exp)].sort((a,b)=>a-b),L=k=>k===0?'올해 12월':k+'월',run=e.every((k,i)=>!i||k===e[i-1]+1);const t=e.length>1&&run?(e[0]===0?'올해 12월~':e[0]+'~')+e[e.length-1]+'월':e.map(L).join('·');return '지난 3년 흐름으로 보면 '+t+'쯤 공고가 나옵니다. 그때 공고를 확인하고 신청해 보세요.'}
+function guide(p){if(!p.exp||!p.exp.length)return p.expText||'';const e=[...new Set(p.exp)].sort((a,b)=>a-b),L=k=>k===0?'올해 12월':k+'월',run=e.every((k,i)=>!i||k===e[i-1]+1);const t=e.length>1&&run?(e[0]===0?'올해 12월~':e[0]+'~')+e[e.length-1]+'월':e.map(L).join('·');const n=p.hist?['2024','2025','2026'].filter(y=>p.hist[y]).length:3;return (n>1?'지난 3년 흐름으로 보면 ':'확인한 공고로 보면 ')+t+'쯤 공고가 나옵니다. 그때 공고를 확인하고 신청해 보세요.'}
 function card(m){
   const p=m.p, el=document.createElement('article'); el.className='card';
   let pill;
@@ -297,7 +319,7 @@ function card(m){
   el.innerHTML='<h3></h3><div class="org"></div><div class="dday">'+pill+'</div>'+(p.hist?'<div class="hist"></div>':'')+'<p class="why">맞는 이유: <em></em></p>'+(p.note?'<p class="note"></p>':'')+
    '<div class="links"><a target="_blank" rel="noopener"></a><span class="kw">검색어 <code></code></span></div>';
   el.querySelector('h3').textContent=p.name; el.querySelector('.org').textContent=p.org;
-  if(p.kind!=='open'){const g=document.createElement('p');g.textContent=guide(p);g.style.cssText='grid-column:1/-1;margin:0;font-size:15px;font-weight:700;color:#26235f';el.querySelector('.dday').after(g)}
+  if(p.kind!=='open'){const g=document.createElement('p');g.textContent=guide(p);g.className='guide';el.querySelector('.dday').after(g)}
   if(p.hist){const h=el.querySelector('.hist');['2024','2025','2026'].forEach(y=>{const d=document.createElement('div');const t=p.hist[y];d.innerHTML='<b>'+y+'</b>';const sp=document.createElement('span');sp.textContent=t||'공식 자료 확인 못 함';if(!t)sp.className='na';d.append(sp);h.append(d)});
     const d=document.createElement('div');d.className='y27';d.innerHTML='<b>2027 예상</b>';d.append(document.createTextNode(p.expText||''));h.append(d)}
   el.querySelector('em').textContent=m.why.join(' / ')||'기본 조건 해당';
@@ -306,7 +328,7 @@ function card(m){
   el.querySelector('code').textContent=p.kw;
   return el;
 }
-const MONTHS=[[0,'26.12'],[1,'1월'],[2,'2월'],[3,'3월'],[4,'4월'],[5,'5월'],[6,'6월']];
+const MONTHS=[[0,'26.12'],...Array.from({length:12},(_,i)=>[i+1,(i+1)+'월'])];
 function calendar(ann){
   const box=$('#cal'); box.replaceChildren();
   const head=document.createElement('div'); head.className='mh'; box.append(head);
