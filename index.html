@@ -2,8 +2,7 @@
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>지원사업 매칭표</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
@@ -12,8 +11,8 @@
   --bg:#f5f5fa; --surface:#ffffff; --fg:#1f1d3d; --muted:#5d5b78; --line:#e2e0ee;
   --navy:#26235f; --accent:#e8740c; --accent-soft:#fff1e3;
   --ok:#1f7a4d; --ok-soft:#e5f4ec; --warn:#b4570a; --warn-soft:#fdf0e2; --dim-soft:#ecebf4;
-  --f-head:'IBM Plex Sans KR','Noto Sans KR','Apple SD Gothic Neo',sans-serif;
-  --f-body:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  --f-head:'Pretendard Variable',Pretendard,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  --f-body:'Pretendard Variable',Pretendard,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#14132a; --surface:#1e1c3a; --fg:#ecebf7; --muted:#a9a7c6; --line:#34315a;
@@ -24,62 +23,62 @@
   --navy:#c9c6ff; --accent:#ff9a45; --accent-soft:#3a2a1c;
   --ok:#6fd3a0; --ok-soft:#173528; --warn:#ffb06b; --warn-soft:#3a2a18; --dim-soft:#2a2850; color-scheme:dark}
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.6}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:17px;line-height:1.6}
 .wrap{max-width:1180px;margin:0 auto;padding-block:28px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:22px}
-.eyebrow{font-size:13px;letter-spacing:.08em;color:var(--accent);font-weight:700}
-h1{font-family:var(--f-head);font-size:clamp(24px,3.2vw,34px);line-height:1.25;margin:4px 0 0;color:var(--navy);text-wrap:balance}
-.asof{font-size:14px;color:var(--muted)}
+.eyebrow{font-size:14px;letter-spacing:.08em;color:var(--accent);font-weight:700}
+h1{font-family:var(--f-head);font-size:clamp(26px,3.4vw,36px);line-height:1.25;margin:4px 0 0;color:var(--navy);text-wrap:balance}
+.asof{font-size:15px;color:var(--muted)}
 .grid{display:grid;grid-template-columns:340px 1fr;gap:24px;align-items:start}
 @media (max-width:860px){.grid{grid-template-columns:1fr}}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
 form .panel{position:sticky;top:16px}
 @media (max-width:860px){form .panel{position:static}}
 fieldset{border:0;margin:0 0 18px;padding:0;min-width:0}
-legend{font-weight:700;font-size:15px;margin-bottom:8px;color:var(--navy)}
+legend{font-weight:700;font-size:16px;margin-bottom:8px;color:var(--navy)}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chips input{position:absolute;opacity:0;pointer-events:none}
-.chips label{display:inline-block;padding:8px 13px;border:1px solid var(--line);border-radius:999px;font-size:15px;cursor:pointer;background:var(--surface);user-select:none}
+.chips label{display:inline-block;padding:8px 13px;border:1px solid var(--line);border-radius:999px;font-size:16px;cursor:pointer;background:var(--surface);user-select:none}
 .chips input:checked+label{background:var(--navy);border-color:var(--navy);color:var(--surface);font-weight:700}
 .chips input:focus-visible+label{outline:3px solid var(--accent);outline-offset:2px}
 .sel{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--fg)}
 .sel:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-.example{font-size:13px;color:var(--warn);background:var(--warn-soft);padding:6px 10px;border-radius:8px;margin:0 0 16px}
+.example{font-size:14px;color:var(--warn);background:var(--warn-soft);padding:6px 10px;border-radius:8px;margin:0 0 16px}
 .btnrow{display:flex;gap:8px}
 button{font:inherit;cursor:pointer;border-radius:10px;padding:11px 16px;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
 button.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700;flex:1}
 button:focus-visible{outline:3px solid var(--navy);outline-offset:2px}
 .summary{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
 .stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;min-width:0}
-.stat b{font-family:var(--f-head);font-size:26px;color:var(--navy);font-variant-numeric:tabular-nums;margin-right:4px}
-.stat span{font-size:14px;color:var(--muted)}
-h2{font-family:var(--f-head);font-size:20px;margin:22px 0 10px;color:var(--navy)}
-h2 small{font-family:var(--f-body);font-size:14px;color:var(--muted);font-weight:400;margin-left:6px}
+.stat b{font-family:var(--f-head);font-size:28px;color:var(--navy);font-variant-numeric:tabular-nums;margin-right:4px}
+.stat span{font-size:15px;color:var(--muted)}
+h2{font-family:var(--f-head);font-size:22px;margin:22px 0 10px;color:var(--navy)}
+h2 small{font-family:var(--f-body);font-size:15px;color:var(--muted);font-weight:400;margin-left:6px}
 .list{display:grid;gap:12px}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:grid;grid-template-columns:1fr auto;gap:6px 16px;min-width:0}
-.card h3{margin:0;font-size:17px;line-height:1.45;font-family:var(--f-head)}
-.org{font-size:14px;color:var(--muted)}
+.card h3{margin:0;font-size:18px;line-height:1.45;font-family:var(--f-head)}
+.org{font-size:15px;color:var(--muted)}
 .dday{grid-row:1/3;grid-column:2;align-self:start;text-align:right;font-variant-numeric:tabular-nums}
-.pill{display:inline-block;font-size:13px;font-weight:700;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.pill{display:inline-block;font-size:14px;font-weight:700;padding:4px 10px;border-radius:999px;white-space:nowrap}
 .p-urgent{background:var(--warn-soft);color:var(--warn)}
 .p-open{background:var(--ok-soft);color:var(--ok)}
 .p-annual{background:var(--dim-soft);color:var(--muted)}
-.ddate{display:block;font-size:13px;color:var(--muted);margin-top:4px}
-.guide{grid-column:1/-1;margin:0;font-size:15px;font-weight:700;color:var(--navy)}
-.why{grid-column:1/-1;font-size:14.5px;margin:4px 0 0}
+.ddate{display:block;font-size:14px;color:var(--muted);margin-top:4px}
+.guide{grid-column:1/-1;margin:0;font-size:16px;font-weight:700;color:var(--navy)}
+.why{grid-column:1/-1;font-size:15.5px;margin:4px 0 0}
 .why em{font-style:normal;color:var(--ok);font-weight:700}
-.note{grid-column:1/-1;font-size:14px;color:var(--warn);margin:0}
-.links{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px 14px;font-size:14px;align-items:center}
+.note{grid-column:1/-1;font-size:15px;color:var(--warn);margin:0}
+.links{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px 14px;font-size:15px;align-items:center}
 .links a{color:var(--navy);font-weight:700}
 .kw{color:var(--muted)}
 .kw code{font-family:inherit;background:var(--dim-soft);padding:2px 6px;border-radius:6px;color:var(--fg)}
 .empty{color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:12px;padding:16px}
 .cta{margin-top:26px;background:var(--navy);color:var(--surface);border-radius:14px;padding:20px 22px;display:flex;flex-wrap:wrap;gap:10px 24px;align-items:center;justify-content:space-between}
 .cta p{margin:0;max-width:60ch}
-.cta .tel{font-family:var(--f-head);font-size:22px;font-weight:700;user-select:all;font-variant-numeric:tabular-nums}
+.cta .tel{font-family:var(--f-head);font-size:24px;font-weight:700;user-select:all;font-variant-numeric:tabular-nums}
 .cal-wrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px}
-.cal{display:grid;grid-template-columns:minmax(190px,2.2fr) repeat(13,minmax(30px,1fr));gap:4px 3px;min-width:640px;font-size:14px}
-.cal .mh{font-size:13px;color:var(--muted);text-align:center;font-variant-numeric:tabular-nums}
+.cal{display:grid;grid-template-columns:minmax(190px,2.2fr) repeat(13,minmax(30px,1fr));gap:4px 3px;min-width:640px;font-size:15px}
+.cal .mh{font-size:14px;color:var(--muted);text-align:center;font-variant-numeric:tabular-nums}
 .cal .mh.now{color:var(--accent);font-weight:700}
 .cal .nm{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-right:6px}
 .cal .c{height:22px;border-radius:5px;background:var(--dim-soft)}
@@ -87,26 +86,26 @@ h2 small{font-family:var(--f-body);font-size:14px;color:var(--muted);font-weight
 .cal .c.on.hot{background:var(--accent)}
 .hist{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,1.1fr);gap:6px;margin-top:6px}
 @media (max-width:620px){.hist{grid-template-columns:1fr 1fr}}
-.hist div{background:var(--bg);border-radius:8px;padding:8px 10px;font-size:13.5px;line-height:1.5;min-width:0}
-.hist b{display:block;font-size:12px;color:var(--muted);letter-spacing:.04em}
+.hist div{background:var(--bg);border-radius:8px;padding:8px 10px;font-size:14.5px;line-height:1.5;min-width:0}
+.hist b{display:block;font-size:13px;color:var(--muted);letter-spacing:.04em}
 .hist .y27{background:var(--accent-soft)}
 .hist .y27 b{color:var(--accent)}
 .hist .na{color:var(--muted)}
-.lead label{display:block;font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.lead label{display:block;font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px}
 .lgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
 .lgrid .full{grid-column:1/-1}
 @media (max-width:560px){.lgrid{grid-template-columns:1fr}}
 .lead input:not([type=checkbox]),.lead textarea{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--fg)}
 .lead input:focus-visible,.lead textarea:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
-.lead .agree{display:flex;gap:8px;align-items:flex-start;font-weight:400;font-size:13.5px;color:var(--muted);margin:4px 0 14px}
+.lead .agree{display:flex;gap:8px;align-items:flex-start;font-weight:400;font-size:14.5px;color:var(--muted);margin:4px 0 14px}
 .lead .agree input{margin-top:4px;width:18px;height:18px;flex:none}
-.msg{margin:10px 0 0;font-size:14.5px;font-weight:700;min-height:1.2em}
+.msg{margin:10px 0 0;font-size:15.5px;font-weight:700;min-height:1.2em}
 .msg.ok{color:var(--ok)} .msg.err{color:var(--warn)}
 .tblwrap{overflow-x:auto}
-table.leads{border-collapse:collapse;width:100%;font-size:14px;min-width:620px}
+table.leads{border-collapse:collapse;width:100%;font-size:15px;min-width:620px}
 table.leads th,table.leads td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
-table.leads th{color:var(--muted);font-weight:700;font-size:13px}
-.fine{font-size:13px;color:var(--muted);margin-top:16px;max-width:80ch}
+table.leads th{color:var(--muted);font-weight:700;font-size:14px}
+.fine{font-size:14px;color:var(--muted);margin-top:16px;max-width:80ch}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
@@ -206,8 +205,8 @@ const P=[
   hist:{'2024':'1월 29일 공고(통합, ~2.23)','2025':'2월 18일 공고(2.24~3.12)','2026':'2월 27일 공고(3.6~3.24)'},exp:[2,3],expText:'2~3월 공고 예상',
   note:'사업자등록 전인 예비창업자 대상.'},
  {name:'(예비)사회적기업 일자리창출 지원',org:'고용노동부 · 시·도',kind:'annual',hideIfRegion:true,
-  types:['se','pse'],needs:['hire'],kw:'사회적기업 일자리창출 지원사업',url:'https://www.socialenterprise.or.kr',
-  hist:{'2024':'경기 1차 2.26·2차 5.13 공고, 제주 3차 접수 7.10~7.19','2025':'경기 1차 접수 1.16~2.4, 전북 2차 접수 4.1~4.15','2026':'서울 접수 2.4~2.23, 인천 2.20~3.6, 부산 2.23~3.10, 경기 2.20 공고, 강원 추가모집 4.20~5.5'},exp:[2,3,4],expText:'2~4월 시·도별 공고, 하반기 추가 모집 예상',
+  types:['se','pse'],needs:['hire'],kw:'사회적기업 일자리창출 지원사업',url:'https://www.seis.or.kr/subPage.do?menuId=30200',
+  hist:{'2024':'경기 1차 2.26·2차 5.13, 제주 3차 7.10 접수 시작','2025':'경기 1.16, 전남 1.20, 전북 2.24 1차 접수 시작','2026':'17개 시·도 모두 1차 모집: 2월 13곳, 3월 4곳(울산·강원·충남·경남). 이후 3~9월 2·3차·추가 모집'},exp:[2,3,4],expText:'2~4월 시·도별 공고, 하반기 추가 모집 예상',
   note:'시·도마다 공고 시기와 조건이 다릅니다. 소재지를 고르면 그 시·도의 공고 흐름을 보여 드립니다.'},
  {name:'(예비)사회적기업 사업개발비 지원',org:'시·도 · 시·군·구',kind:'annual',
   types:['se','pse'],needs:['market','startup'],kw:'사회적기업 사업개발비 지원',url:'https://www.socialenterprise.or.kr',
@@ -249,32 +248,32 @@ const P=[
  {name:'소상공인 정책자금 융자(2026년분)',org:'소상공인시장진흥공단',kind:'open',end:'2026-12-31',
   types:['sole','se','pse','coop'],needs:['fund'],kw:'소상공인 정책자금',url:'https://www.sbiz24.kr'}
 ];
-/* 시·도별 (예비)사회적기업 일자리창출 공고. 공고 원문 페이지를 직접 열어 확인한 것만 적고, 없는 해는 '확인 못 함'으로 표시 (2026.11.23 확인, 출처는 각 url) */
+/* 시·도별 (예비)사회적기업 일자리창출 공고 = 사회적기업 통합사업관리시스템(seis.or.kr, 한국사회적기업진흥원) 재정지원 공고 목록의 신청기간.
+   2024·2025는 그 목록에 올라온 시·도만 있고, 나머지는 공고 원문(기업마당·시·도청)으로 확인한 것. 확인 못 한 해는 비워 둠 (2026.11.23 확인) */
+const SEIS_URL='https://www.seis.or.kr/subPage.do?menuId=30200';
 const SE_JOBS={
- // 서울: 서울특별시 공고 제2026-410호 원문, 2·3차는 서울시 통합검색의 선정결과 공고(5.7, 8.11)
- '서울':{h:{'2026':'1차 2.4 공고(서울시 공고 제2026-410호), 접수 2.4~2.23. 3차 접수 6.18~7.3(기업마당). 2·3차 선정결과 5.7·8.11 공고'},exp:[2,6],url:'https://news.seoul.go.kr/economy/social_economy'},
- '부산':{h:{'2026':'접수 2.23~3.10, 2차 3.13~3.20(기업마당)'},exp:[2,3],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000118602'},
- '인천':{h:{'2026':'접수 2.20~3.6, 재공고 3.12~3.20(기업마당)'},exp:[2,3],url:'https://www.yeonsu.go.kr/main/yeonsu/management/notice.asp?page=v&seq=38'},
- '경기':{h:{'2024':'1차 2.26, 2차 5.13 공고','2025':'1차 접수 1.16~2.4','2026':'2.20 공고(경기도 고시 2026-452), 3차 접수 4.27~5.7(기업마당)'},exp:[1,2,4],url:'https://www.gg.go.kr/bbs/boardView.do?bIdx=222750759&bsIdx=469&menuId=1547'},
- '강원':{h:{'2026':'4.20 변경·추가모집 공고(추가모집 4.20~5.5), 하반기 추가 8.4~8.19(기업마당)'},exp:[4,8],n:'2026년 처음 모집 공고일은 확인하지 못했습니다.',url:'https://state.gwd.go.kr/portal/bulletin/notification?articleSeq=269388'},
- '전북':{h:{'2025':'2차 접수 4.1~4.15','2026':'2차 4.15~4.29, 3차 9.23~10.7(기업마당)'},exp:[4,9],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000107224'},
- '제주':{h:{'2024':'3차 접수 7.10~7.19','2026':'추가 모집 7.23~8.6(기업마당)'},exp:[7],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000099235'},
- // 기업마당 지원사업 목록(지난 공고 포함)에서 Claude가 확인한 2026년 공고 (2026.11.23)
- '광주':{h:{'2026':'접수 5.11~5.22(기업마당)'},exp:[5],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200View.do'},
- '울산':{h:{'2026':'접수 3.6~3.20(기업마당)'},exp:[3],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200View.do'},
- '충남':{h:{'2026':'접수 3.11~3.30(기업마당)'},exp:[3],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200View.do'},
- '경북':{h:{'2026':'추가 모집 4.21~5.6(기업마당)'},exp:[4],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200View.do'},
- // 아래는 2024~2026 공고를 못 찾은 곳. 그 전 공고나 시·도 안내 페이지에서 확인한 주기만 메모로 남김
- '대구':{h:{'2026':'2차 접수 4.15~5.1(기업마당)'},exp:[4],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200View.do',n:'2022년에는 4차 모집(10.4~10.21)까지 있었습니다(기업마당).'},
- '대전':{h:{'2026':'2차 접수 3.9~3.16(기업마당)'},exp:[3],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200View.do',n:'2024년 2월에는 대전사회적경제연구원이 「두드림 일자리사업」으로 사회적경제기업 신규 고용 인건비를 지원했습니다(별도 사업).'},
- '세종':{h:{},exp:[],n:'세종시 안내 페이지 기준 사회적기업 지원사업은 연 2회 공개 모집합니다.',url:'https://www.sejong.go.kr/kor/sub04_1002.do'},
- '충북':{h:{},exp:[],n:'2023년에는 하반기 모집이 9월(9.13~9.20)에 있었습니다.'},
- '경남':{h:{},exp:[],n:'2023년에는 2차 모집이 7월(7.3~7.17)에 있었습니다.'}
+ '서울':{h:{'2026':'1차 2.4~2.23, 2차 3.4~3.23, 3차 6.18~7.3 접수'},exp:[2,3,6]},
+ '부산':{h:{'2026':'1차 2.23~3.10, 2차 3.13~3.20 접수'},exp:[2,3]},
+ '대구':{h:{'2026':'1차 2.9~2.27, 2차 4.15~5.1 접수'},exp:[2,4]},
+ '인천':{h:{'2026':'1차(재공고) 2.20~3.20 접수'},exp:[2]},
+ '광주':{h:{'2026':'1차 2.27~3.20, 2차 5.11~5.22 접수'},exp:[2,5]},
+ '대전':{h:{'2026':'1차 2.20~3.5, 2차 3.9~3.16 접수'},exp:[2,3]},
+ '울산':{h:{'2026':'1차 3.6~3.20, 2차(재공고) 4.7~4.21 접수'},exp:[3,4]},
+ '세종':{h:{'2026':'1차 2.13~2.27, 추가 4.1~4.10 접수 (사업명: 취약계층 일자리 지원사업)'},exp:[2,4]},
+ '경기':{h:{'2024':'1차 2.26~3.15, 2차 5.13~6.4 접수','2025':'1차 1.16~2.4, 2차 6.17~6.27 접수','2026':'1차 2.23~3.6, 2차 3.25~4.10, 3차 4.27~5.7 접수'},exp:[2,3,4]},
+ '강원':{h:{'2026':'1차 3.4~3.23, 추가 3.31~4.10, 4.20~5.5, 하반기 추가 8.4~8.19 접수'},exp:[3,4,8]},
+ '충북':{h:{'2026':'1차 2.27~3.12, 2차 3.27~4.1 접수'},exp:[2,3]},
+ '충남':{h:{'2026':'1차 3.11~3.30 접수'},exp:[3]},
+ '전북':{h:{'2025':'1차 2.24~3.7, 2차 4.1~4.15, 3차 9.1~9.12 접수','2026':'1차 2.13~2.27, 2차 4.15~4.29, 3차 9.23~10.7 접수'},exp:[2,4,9]},
+ '전남':{h:{'2025':'1차 1.20~2.4 접수','2026':'1차 2.10~3.6, 추가 5.19~5.27 접수'},exp:[2,5]},
+ '경북':{h:{'2026':'1차 2.27~3.16, 추가 4.21~5.6 접수'},exp:[2,4]},
+ '경남':{h:{'2026':'1차 3.3~3.20, 2차 3.23~3.30 접수'},exp:[3]},
+ '제주':{h:{'2024':'3차 7.10~7.19 접수(기업마당)','2026':'1차 2.2~2.14, 2차 7.22~8.5 접수'},exp:[2,7]}
 };
 SIDO.forEach(r=>{const d=SE_JOBS[r]||{h:{},exp:[]};P.push({name:r+' (예비)사회적기업 일자리창출 지원',org:r+' 시·도청',kind:'annual',regions:[r],
-  types:['se','pse'],needs:['hire'],kw:r+' 사회적기업 일자리창출',url:d.url||'https://www.bizinfo.go.kr',hist:d.h,exp:d.exp,
-  expText:d.exp.length?(d.exp.length>1&&d.exp.every((k,i)=>!i||k===d.exp[i-1]+1)?d.exp[0]+'~'+d.exp[d.exp.length-1]:d.exp.join('·'))+'월 공고 예상':'공식 공고를 확인하지 못했습니다. 다른 시·도는 2~4월에 공고했습니다.',
-  note:(d.n?d.n+' ':'')+'취약계층을 새로 고용하면 인건비 일부를 지원합니다. 조건과 금액은 '+r+' 공고문에서 확인해 주세요.'})});
+  types:['se','pse'],needs:['hire'],kw:r+' 사회적기업 일자리창출',url:SEIS_URL,hist:d.h,exp:d.exp,
+  expText:d.exp.length?d.exp.join('·')+'월 접수 예상':'공식 공고를 확인하지 못했습니다. 다른 시·도는 2~4월에 공고했습니다.',
+  note:'취약계층을 새로 고용하면 인건비 일부를 지원합니다. 조건과 금액은 '+r+' 공고문에서 확인해 주세요.'})});
 
 const $=s=>document.querySelector(s);
 function build(){
@@ -389,8 +388,8 @@ function reportHTML(co,person,vv){
   if(v.sector.includes('export'))prep.push('최근 수출실적증명');
   if(v.need.some(n=>['startup','fund','market'].includes(n)))prep.push('사업계획서 초안(문제·해결·시장·매출계획·자금 사용처) — 1~2월 공고 전에 미리 작성');
   prep.push('제품·서비스 소개서(공공기관·바이어용 1~2쪽)');
-  return '<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(co)+' 정부지원사업 안내</title><style>'+
-  'body{font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;color:#1f1d3d;margin:0;background:#fff;line-height:1.65}'+
+  return '<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(co)+' 정부지원사업 안내</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><style>'+
+  'body{font-family:"Pretendard Variable",Pretendard,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;color:#1f1d3d;margin:0;background:#fff;line-height:1.65}'+
   '.w{width:794px;margin:0;padding:40px 44px 48px;box-sizing:border-box}.top{border-bottom:3px solid #26235f;padding-bottom:14px;margin-bottom:20px}'+
   '.brand{color:#e8740c;font-weight:700;font-size:13px;letter-spacing:.08em}h1{font-size:26px;color:#26235f;margin:6px 0}h2{font-size:19px;color:#26235f;margin:28px 0 10px;border-left:4px solid #e8740c;padding-left:10px}'+
   '.meta{font-size:14px;color:#5d5b78}.cond{background:#f5f5fa;border-radius:10px;padding:12px 16px;font-size:14.5px}.cond li{margin:2px 0}'+
