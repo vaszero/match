@@ -252,23 +252,28 @@ const P=[
 /* 시·도별 (예비)사회적기업 일자리창출 공고. 공고 원문 페이지를 직접 열어 확인한 것만 적고, 없는 해는 '확인 못 함'으로 표시 (2026.11.23 확인, 출처는 각 url) */
 const SE_JOBS={
  // 서울: 서울특별시 공고 제2026-410호 원문, 2·3차는 서울시 통합검색의 선정결과 공고(5.7, 8.11)
- '서울':{h:{'2026':'1차 2.4 공고(서울시 공고 제2026-410호), 접수 2.4~2.23. 이후 2·3차 모집(선정결과 5.7·8.11 공고)'},exp:[2],url:'https://news.seoul.go.kr/economy/social_economy'},
- '부산':{h:{'2026':'접수 2.23~3.10'},exp:[2,3],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000118602'},
- '인천':{h:{'2026':'접수 2.20~3.6'},exp:[2,3],url:'https://www.yeonsu.go.kr/main/yeonsu/management/notice.asp?page=v&seq=38'},
- '경기':{h:{'2024':'1차 2.26, 2차 5.13 공고','2025':'1차 접수 1.16~2.4','2026':'2.20 공고(경기도 고시 2026-452)'},exp:[1,2],url:'https://www.gg.go.kr/bbs/boardView.do?bIdx=222750759&bsIdx=469&menuId=1547'},
- '강원':{h:{'2026':'4.20 변경·추가모집 공고(추가모집 4.20~5.5)'},exp:[4],n:'2026년 처음 모집 공고일은 확인하지 못했습니다.',url:'https://state.gwd.go.kr/portal/bulletin/notification?articleSeq=269388'},
- '전북':{h:{'2025':'2차 접수 4.1~4.15'},exp:[4],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000107224'},
- '제주':{h:{'2024':'3차 접수 7.10~7.19'},exp:[7],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000099235'},
+ '서울':{h:{'2026':'1차 2.4 공고(서울시 공고 제2026-410호), 접수 2.4~2.23. 3차 접수 6.18~7.3(기업마당). 2·3차 선정결과 5.7·8.11 공고'},exp:[2,6],url:'https://news.seoul.go.kr/economy/social_economy'},
+ '부산':{h:{'2026':'접수 2.23~3.10, 2차 3.13~3.20(기업마당)'},exp:[2,3],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000118602'},
+ '인천':{h:{'2026':'접수 2.20~3.6, 재공고 3.12~3.20(기업마당)'},exp:[2,3],url:'https://www.yeonsu.go.kr/main/yeonsu/management/notice.asp?page=v&seq=38'},
+ '경기':{h:{'2024':'1차 2.26, 2차 5.13 공고','2025':'1차 접수 1.16~2.4','2026':'2.20 공고(경기도 고시 2026-452), 3차 접수 4.27~5.7(기업마당)'},exp:[1,2,4],url:'https://www.gg.go.kr/bbs/boardView.do?bIdx=222750759&bsIdx=469&menuId=1547'},
+ '강원':{h:{'2026':'4.20 변경·추가모집 공고(추가모집 4.20~5.5), 하반기 추가 8.4~8.19(기업마당)'},exp:[4,8],n:'2026년 처음 모집 공고일은 확인하지 못했습니다.',url:'https://state.gwd.go.kr/portal/bulletin/notification?articleSeq=269388'},
+ '전북':{h:{'2025':'2차 접수 4.1~4.15','2026':'2차 4.15~4.29, 3차 9.23~10.7(기업마당)'},exp:[4,9],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000107224'},
+ '제주':{h:{'2024':'3차 접수 7.10~7.19','2026':'추가 모집 7.23~8.6(기업마당)'},exp:[7],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000099235'},
+ // 기업마당 지원사업 목록(지난 공고 포함)에서 Claude가 확인한 2026년 공고 (2026.11.23)
+ '광주':{h:{'2026':'접수 5.11~5.22(기업마당)'},exp:[5],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200View.do'},
+ '울산':{h:{'2026':'접수 3.6~3.20(기업마당)'},exp:[3],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200View.do'},
+ '충남':{h:{'2026':'접수 3.11~3.30(기업마당)'},exp:[3],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200View.do'},
+ '경북':{h:{'2026':'추가 모집 4.21~5.6(기업마당)'},exp:[4],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200View.do'},
  // 아래는 2024~2026 공고를 못 찾은 곳. 그 전 공고나 시·도 안내 페이지에서 확인한 주기만 메모로 남김
- '대구':{h:{},exp:[],n:'2022년에는 4차 모집(10.4~10.21)까지 있었습니다(기업마당).'},
- '대전':{h:{},exp:[],n:'2024년 2월에는 대전사회적경제연구원이 「두드림 일자리사업」으로 사회적경제기업 신규 고용 인건비를 지원했습니다(별도 사업).'},
+ '대구':{h:{'2026':'2차 접수 4.15~5.1(기업마당)'},exp:[4],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200View.do',n:'2022년에는 4차 모집(10.4~10.21)까지 있었습니다(기업마당).'},
+ '대전':{h:{'2026':'2차 접수 3.9~3.16(기업마당)'},exp:[3],url:'https://www.bizinfo.go.kr/sii/siia/selectSIIA200View.do',n:'2024년 2월에는 대전사회적경제연구원이 「두드림 일자리사업」으로 사회적경제기업 신규 고용 인건비를 지원했습니다(별도 사업).'},
  '세종':{h:{},exp:[],n:'세종시 안내 페이지 기준 사회적기업 지원사업은 연 2회 공개 모집합니다.',url:'https://www.sejong.go.kr/kor/sub04_1002.do'},
  '충북':{h:{},exp:[],n:'2023년에는 하반기 모집이 9월(9.13~9.20)에 있었습니다.'},
  '경남':{h:{},exp:[],n:'2023년에는 2차 모집이 7월(7.3~7.17)에 있었습니다.'}
 };
 SIDO.forEach(r=>{const d=SE_JOBS[r]||{h:{},exp:[]};P.push({name:r+' (예비)사회적기업 일자리창출 지원',org:r+' 시·도청',kind:'annual',regions:[r],
   types:['se','pse'],needs:['hire'],kw:r+' 사회적기업 일자리창출',url:d.url||'https://www.bizinfo.go.kr',hist:d.h,exp:d.exp,
-  expText:d.exp.length?(d.exp.length>1?d.exp[0]+'~'+d.exp[d.exp.length-1]:d.exp[0])+'월 공고 예상':'공식 공고를 확인하지 못했습니다. 다른 시·도는 2~4월에 공고했습니다.',
+  expText:d.exp.length?(d.exp.length>1&&d.exp.every((k,i)=>!i||k===d.exp[i-1]+1)?d.exp[0]+'~'+d.exp[d.exp.length-1]:d.exp.join('·'))+'월 공고 예상':'공식 공고를 확인하지 못했습니다. 다른 시·도는 2~4월에 공고했습니다.',
   note:(d.n?d.n+' ':'')+'취약계층을 새로 고용하면 인건비 일부를 지원합니다. 조건과 금액은 '+r+' 공고문에서 확인해 주세요.'})});
 
 const $=s=>document.querySelector(s);
